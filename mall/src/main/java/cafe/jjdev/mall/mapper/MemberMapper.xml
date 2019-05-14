@@ -1,0 +1,101 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cafe.jjdev.mall.mapper.MemberMapper">
+	<select id="pwSearchResult" parameterType="cafe.jjdev.mall.vo.Member" resultType="String">
+		SELECT
+			member_pw AS memberPw
+		FROM member
+		WHERE member_id = #{memberId}
+		AND member_email = #{memberEmail}
+		AND member_name = #{memberName}
+	</select>
+	<select id="idSearchResult" parameterType="cafe.jjdev.mall.vo.Member" resultType="String">
+		SELECT
+			member_id AS memberId
+		FROM member
+		WHERE member_name = #{memberName}
+		AND member_phone = #{memberPhone}
+	</select>
+	<delete id="deleteMember" parameterType="Map">
+		DELETE FROM member
+		WHERE member_no = #{memberNo}
+		AND member_pw = #{memberPw}
+	</delete>
+	<!-- <update id="deleteMember2" parameterType="cafe.jjdev.mall.vo.MemberId">
+		UPDATE
+		SET member_out_date AS memberOutDate
+		FROM memberid
+		WHERE member_id = #{memberId}
+	</update> -->
+	<update id="passwordUpdate" parameterType="Map">
+		UPDATE member
+		SET member_pw = #{memberPw}
+		WHERE member_no = #{memberNo}
+		AND member_pw = #{currentPw}
+	</update>
+	<update id="updateMember" parameterType="cafe.jjdev.mall.vo.Member">
+		UPDATE member
+		SET member_phone = #{memberPhone}
+			, member_address = #{memberAddress}
+		WHERE member_no = #{memberNo}
+	</update>
+	
+	<select id="selectMember" resultType="cafe.jjdev.mall.vo.Member">
+		SELECT
+			member_id AS memberId
+			, member_name AS memberName
+			, member_phone AS memberPhone
+			, member_address AS memberAddress
+			, member_gender AS memberGender
+			, member_level AS memberLevel
+		FROM member
+		WHERE member_no = #{memberNo}
+	</select>
+	<select id="getMember" parameterType="cafe.jjdev.mall.vo.Member" resultType="cafe.jjdev.mall.vo.Member">
+		SELECT
+			member_no AS memberNo
+			, member_name AS memberName
+			, member_level AS memberLevel
+		FROM
+			member
+		WHERE member_id = #{memberId}
+		AND member_pw = #{memberPw}
+	</select>
+	<select id="idCheck" parameterType="cafe.jjdev.mall.vo.MemberId" resultType="cafe.jjdev.mall.vo.Member">
+		SELECT member_id
+		FROM memberid
+		WHERE member_id = #{memberId} 
+	</select>
+	<insert id="joinMember2" parameterType="cafe.jjdev.mall.vo.MemberId">
+		INSERT INTO memberid(
+			member_id
+			, member_in_date
+			, member_out_date
+		)
+		VALUES (
+			#{memberId}
+			, CURDATE()
+			, 0000-00-00
+		)
+	</insert>
+	<insert id="joinMember" parameterType="cafe.jjdev.mall.vo.Member">
+		INSERT INTO member(
+			member_id
+			, member_pw
+			, member_name
+			, member_phone
+			, member_address
+			, member_gender
+			, member_level)
+		VALUES (
+			#{memberId}
+			, #{memberPw}
+			, #{memberName}
+			, #{memberPhone}
+			, #{memberAddress}
+			, #{memberGender}
+			, #{memberLevel}
+		)
+	</insert>
+</mapper>

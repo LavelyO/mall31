@@ -1,0 +1,70 @@
+-- --------------------------------------------------------
+-- 호스트:                          127.0.0.1
+-- 서버 버전:                        5.5.32 - MySQL Community Server (GPL)
+-- 서버 OS:                        Win32
+-- HeidiSQL 버전:                  8.0.0.4396
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- db04nhj 의 데이터베이스 구조 덤핑
+CREATE DATABASE IF NOT EXISTS `db04nhj` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `db04nhj`;
+
+
+-- 테이블 db04nhj의 구조를 덤프합니다. tb_goods
+CREATE TABLE IF NOT EXISTS `tb_goods` (
+  `g_code` varchar(20) NOT NULL,
+  `m_id` varchar(20) NOT NULL,
+  `g_name` varchar(20) NOT NULL,
+  `g_cate` varchar(20) NOT NULL,
+  `g_price` varchar(20) NOT NULL,
+  `g_color` varchar(20) NOT NULL,
+  `g_size` varchar(20) NOT NULL,
+  `g_date` varchar(20) NOT NULL,
+  `g_desc` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`g_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=euckr;
+
+-- Dumping data for table db04nhj.tb_goods: ~7 rows (대략적)
+/*!40000 ALTER TABLE `tb_goods` DISABLE KEYS */;
+INSERT INTO `tb_goods` (`g_code`, `m_id`, `g_name`, `g_cate`, `g_price`, `g_color`, `g_size`, `g_date`, `g_desc`) VALUES
+	('goods_1', 'id_002', '흑사탕', '캔디', '200원', '검정', '보통', '2019-03-19', '달고 맛있는 흑사탕..'),
+	('goods_2', 'id_002', '눈깔사탕', '캔디', '500원', '파랑', '커요', '2019-03-12', '소다맛 눈깔사탕'),
+	('goods_3', 'id_002', '알사탕', '캔디', '500원', '딸기맛', '보통', '2019-02-19', '딸기맛 알사탕'),
+	('goods_4', 'id_002', '왕사탕', '캔디', '500원', '초코맛', '큼', '2019-03-19', '초코맛 왕사탕'),
+	('goods_5', 'id_002', '123', '123', '200원', '123', '123', '2019-02-26', '123'),
+	('goods_6', 'id_003', '꽃무늬 양말', 'ETC', '1500원', '흰/노랑', '여성용', '2019-03-03', '여성용 꽃무늬 양말'),
+	('goods_7', 'id_003', '줄무늬 양말', 'ETC', '1000원', '흰/검', 'S', '2019-03-15', '흰검 줄무늬 양말');
+/*!40000 ALTER TABLE `tb_goods` ENABLE KEYS */;
+
+
+-- 테이블 db04nhj의 구조를 덤프합니다. tb_user
+CREATE TABLE IF NOT EXISTS `tb_user` (
+  `u_id` varchar(10) NOT NULL,
+  `u_pw` varchar(10) NOT NULL,
+  `u_level` varchar(10) NOT NULL,
+  `u_name` varchar(20) NOT NULL,
+  `u_email` varchar(80) DEFAULT NULL,
+  `u_phone` varchar(80) DEFAULT NULL,
+  `u_addr` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`u_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=euckr;
+
+-- Dumping data for table db04nhj.tb_user: ~7 rows (대략적)
+/*!40000 ALTER TABLE `tb_user` DISABLE KEYS */;
+INSERT INTO `tb_user` (`u_id`, `u_pw`, `u_level`, `u_name`, `u_email`, `u_phone`, `u_addr`) VALUES
+	('id_001', 'pw_001', '관리자', '김관리', 'master001@aaaaa.com', '010-0000-1111', '93st'),
+	('id_002', 'pw_002', '판매자', '이판매', 'seller02@mmmmm.com', '01012341234', '덕진공원2번벤치'),
+	('id_003', 'pw_003', '판매자', '박판매', 'seller03@mmmmm.com', '01012345555', '덕진공원3번벤치'),
+	('id_004', 'pw_004', '회원', '곽회원', 'user04@mmmmm.com', '01012344444', '덕진공원4번벤치'),
+	('id_005', 'pw_005', '관리자', '유관리', 'master05@mmmmm.com', '01012344567', '덕진공원5번벤치'),
+	('id_006', 'pw_006', '회원', '문회원', 'user06@mmmmm.com', '01012346789', '덕진공원6번벤치'),
+	('id_007', 'pw_007', '회원', '모회원', 'user007@mmmmm.com', '010-2222-2222', '덕진공원7번벤치');
+/*!40000 ALTER TABLE `tb_user` ENABLE KEYS */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
