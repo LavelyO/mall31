@@ -18,12 +18,13 @@ public class ProductController {
 	@GetMapping("/product/list")
 	public String list(Model model, @RequestParam(value="categoryNo") int categoryNo
 			, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
-			, @RequestParam(value="searchWord", defaultValue="1") String searchWord) {
+			, @RequestParam(value="searchWord", defaultValue="") String searchWord) {
 		model.addAttribute("categoryNo", categoryNo);
 		List<ProductCommon> list = productCommonService.getProductCommonListByCategoryNo(categoryNo, currentPage, searchWord);
+		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchWord", searchWord);
-		return "redirect:/product/list";
+		return "/product/list";
 	}
 	
 	

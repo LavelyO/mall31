@@ -28,7 +28,7 @@
 		<ul>
 			<c:forEach var="category" items='${categoryList}'>
 				<li>
-					<a href="${pageContext.request.contextPath}/product/list?category_no=${category.categoryNo}">${category.categoryName}</a>
+					<a href="${pageContext.request.contextPath}/product/list?categoryNo=${category.categoryNo}">${category.categoryName}</a>
 				</li>
 			</c:forEach>
 		</ul>
