@@ -28,14 +28,30 @@
 			</tr>
 			<c:forEach items="${list}" var="productCommon">
 			<tr>
-				<td>${productCommon.productCommonName}</td>
+				<td><a href="${pageContext.request.contextPath}/product/detail?productCommonNo=${productCommon.productCommonNo}">${productCommon.productCommonName}</a></td>
 				<td>${productCommon.productCommonPrice}원</td>
 			</tr>
 			</c:forEach>
 		</table>
 		
 		<div>
+		<%-- <a href="${pageContext.request.contextPath}/product/list?categoryNo=${category.categoryNo}">${category.categoryName}</a> --%>
+			<c:if test='${lastPage != 1}'>
+			<c:if test='${currentPage > 1}'>	<!-- 현재 페이지가 1보다 크면 아래 문장을 출력한다. -->
+				<a href="${pageContext.request.contextPath}/product/list?categoryNo=${categoryNo}&currentPage=${startPage}">처음</a>
+				<a href="${pageContext.request.contextPath}/product/list?categoryNo=${categoryNo}&currentPage=${currentPage-1}">이전</a>
+			</c:if>
+			
+			<c:forEach begin="1" end="${lastPage}" var="page" step="1">		<!-- 1부터 lastPage까지 나열하는데 변수명으로 page를 사용하고 1씩 증가한다. -->
+				<a href="${pageContext.request.contextPath}/product/list?categoryNo=${categoryNo}&currentPage=${page}&searchWord=${searchWord}">${page}</a>
+			</c:forEach>
+			
+			<c:if test='${currentPage < lastPage}'>		<!-- 현재 페이지가 lastPage보다 작으면 아래 문장을 출력한다. -->
+				<a href="${pageContext.request.contextPath}/product/list?categoryNo=${categoryNo}&currentPage=${currentPage+1}">다음</a>	<!-- 다음페이지는 currentPage+1 -->
+				<a href="${pageContext.request.contextPath}/product/list?categoryNo=${categoryNo}&currentPage=${lastPage}">끝</a>
+			</c:if>
 			<!-- 이전/다음/product/getProductListByCategory?category&currentPage -->
+			</c:if>
 		</div>
 </body>
 </html>
